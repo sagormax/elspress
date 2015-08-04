@@ -39,7 +39,7 @@ class AdminLogin extends CI_Controller {
 		$feedBack = $this->usersModel->loginCredential($userName, $pass);
 		if( $feedBack ) 
 		{
-			redirect('welcome', 'refresh');	
+			redirect('dashboard', 'refresh');	
 		} 
 		else
 		{

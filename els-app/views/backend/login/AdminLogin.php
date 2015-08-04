@@ -3,10 +3,10 @@
     <head>
         <title>Admin Login</title><meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/backend/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/backend/css/bootstrap-responsive.min.css" />
-        <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/backend/css/matrix-login.css" />
-        <link href="<?php echo base_url(); ?>/assets/backend/font-awesome/css/font-awesome.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/css/bootstrap-responsive.min.css" />
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/css/matrix-login.css" />
+        <link href="<?php echo base_url(); ?>assets/backend/font-awesome/css/font-awesome.css" rel="stylesheet" />
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
     </head>
@@ -72,8 +72,8 @@
             <?php echo form_close(); ?>
         </div>
         
-        <script src="<?php echo base_url(); ?>/assets/backend/js/jquery.min.js"></script>  
-        <script src="<?php echo base_url(); ?>/assets/backend/js/matrix.login.js"></script> 
+        <script src="<?php echo base_url(); ?>assets/backend/js/jquery.min.js"></script>  
+        <script src="<?php echo base_url(); ?>assets/backend/js/matrix.login.js"></script> 
         <script>
         $(document).ready(function(){
 
