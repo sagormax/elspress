@@ -16,7 +16,7 @@ class AdminLogin extends CI_Controller {
 	public function index()
 	{	
 		if( $this->session->userdata('user_is_logged_in') ){
-			redirect('welcome', 'refresh');
+			redirect('dashboard', 'refresh');
 		}
 		$this->load->view('backend/login/AdminLogin');
 	}
