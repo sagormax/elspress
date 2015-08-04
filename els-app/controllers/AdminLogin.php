@@ -37,7 +37,15 @@ class AdminLogin extends CI_Controller {
 		$userName = $this->input->post('userName', TRUE);
 		$pass = $this->do_hash( $this->input->post('userPass') );
 		$feedBack = $this->usersModel->loginCredential($userName, $pass);
-		( $feedBack ) ? redirect('welcome', 'refresh') : redirect('admin', 'refresh');
+		if( $feedBack ) 
+		{
+			redirect('welcome', 'refresh');	
+		} 
+		else
+		{
+			$this->session->set_flashdata('authError', 'username or password is invalid!');
+			redirect('admin', 'refresh');
+		}
 	}
 
 	/*

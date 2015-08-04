@@ -18,18 +18,29 @@
                 'class' => 'form-vertical',
             );
             echo form_open('login-validate/?=user', $attr); ?>
-				 <div class="control-group normal_text"> <h3><img src="<?php echo base_url(); ?>/assets/backend/img/logo.png" alt="Logo" /></h3></div>
+				<div class="control-group normal_text"> <h3><img src="<?php echo base_url(); ?>/assets/backend/img/logo2.png" alt="Logo" /></h3></div>
+                <!-- Authentication Error Msg  -->
+                <?php if( $this->session->flashdata('authError') ): ?>
+                    <div class="control-group errorMsg">
+                        <div class="controls">
+                            <div class="main_input_box alert alert-error" style="width:77%;">
+                                  <?php echo $this->session->flashdata('authError'); ?>
+                            </div>
+                        </div>
+                    </div>        
+                <?php endif; $this->session->set_flashdata('authError', '') ?>
+                <!-- End -->
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <span class="add-on bg_lg"><i class="icon-user"></i></span><input type="text" placeholder="Username" name="userName" />
+                            <span class="add-on bg_lg"><i class="icon-user"></i></span><input type="text" placeholder="Username" name="userName" required />
                         </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <span class="add-on bg_ly"><i class="icon-lock"></i></span><input type="password" placeholder="Password" name="userPass" />
+                            <span class="add-on bg_ly"><i class="icon-lock"></i></span><input type="password" placeholder="Password" name="userPass" required />
                         </div>
                     </div>
                 </div>
@@ -50,7 +61,7 @@
 				
                     <div class="controls">
                         <div class="main_input_box">
-                            <span class="add-on bg_lo"><i class="icon-envelope"></i></span><input type="email" placeholder="E-mail address" name="userEmail" />
+                            <span class="add-on bg_lo"><i class="icon-envelope"></i></span><input type="email" placeholder="E-mail address" name="userEmail" required />
                         </div>
                     </div>
                
@@ -63,5 +74,13 @@
         
         <script src="<?php echo base_url(); ?>/assets/backend/js/jquery.min.js"></script>  
         <script src="<?php echo base_url(); ?>/assets/backend/js/matrix.login.js"></script> 
+        <script>
+        $(document).ready(function(){
+
+            // Hide Error Msg 
+            setTimeout(function(){ $(".errorMsg").fadeOut(2000); }, 5000);
+            
+        });
+        </script>
     </body>
 </html>
