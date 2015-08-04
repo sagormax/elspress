@@ -11,5 +11,5 @@ This is the GitHub Pages repository for the elspress: The Right Way_ project.
 
 ## Authentication
 
-### Admin User : admin
-### Admin Pass : 123456
+* Admin User : admin
+* Admin Pass : 123456
