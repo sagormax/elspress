@@ -11,6 +11,7 @@ class Users extends CI_Model{
 		$attr = array(
 			'user_name' => $userName,
 			'user_pass' => $userPass,
+			'user_status' => 1,
 		);
 		$feedback = $this->db->get_where('ep_users', $attr);
 		if( $feedback->num_rows() == 1 )

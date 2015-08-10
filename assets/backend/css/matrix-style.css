@@ -1587,3 +1587,8 @@ div.dataTables_wrapper .ui-widget-header {
 }
 #sidebar .content{ display:none;}
 }
+
+a.activeItem{
+	background-color: #28b779;
+    color: #fff;	
+}

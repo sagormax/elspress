@@ -164,3 +164,25 @@ $(document).ready(function(){
 	
 });
 
+$(window).load(function(){
+
+	// List inside list
+	var pgurl = window.location.href.substr(window.location.href);
+	$('#sidebar ul li.submenu ul li a').each(function(){
+		if( $(this).attr("href") == pgurl ){
+			$(this).parent().parent().show();
+			$(this).addClass('activeItem');
+			$(this).parent().parent().parent().addClass('active');			
+		}
+			
+	});
+
+	// Single List
+	$('#sidebar > ul > li > a').each(function(){
+		if( $(this).attr("href") == pgurl ){
+			$(this).parent().addClass('active');			
+		}
+			
+	});	
+
+});

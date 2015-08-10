@@ -13,7 +13,7 @@ class Dashboard extends MX_Controller {
 
 	public function index()
 	{
-
-		$this->load->view('dashboard_layout');
+		$data['content'] = $this->load->view('homeView', '', true);
+		$this->load->view('dashboard_layout', $data);
 	}
 }

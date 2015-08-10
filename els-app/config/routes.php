@@ -60,3 +60,5 @@ $route['admin'] = 'AdminLogin';
 $route['login-validate'] = 'AdminLogin/loginCheck';
 $route['recover-validate'] = 'AdminLogin/recoverUser';
 $route['logout'] = 'AdminLogin/logout';
+$route['users'] = 'dashboard/users';
+$route['addUser'] = 'dashboard/addUser';
