@@ -180,6 +180,14 @@
 function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
+
+$(document).ready(function(){
+
+  // Hide Error Msg 
+  setTimeout(function(){ $(".successMsg").fadeOut(2000); }, 5000);
+  
+});
 </script>
+
 </body>
 </html>

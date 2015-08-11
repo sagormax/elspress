@@ -16,4 +16,14 @@ class Dashboard extends MX_Controller {
 		$data['content'] = $this->load->view('homeView', '', true);
 		$this->load->view('dashboard_layout', $data);
 	}
+	
+	/*
+	| Default 404 page
+	*/
+	public function pageNotFound()
+	{
+		$data['content'] = $this->load->view('backend/404/notFound', '', true);
+		$this->load->view('dashboard_layout', $data);
+	}
+
 }

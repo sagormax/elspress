@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'dashboard';
-$route['404_override'] = '';
+$route['404_override'] = 'dashboard/pageNotFound';
 $route['translate_uri_dashes'] = FALSE;
 /*
 | Custom Route.
@@ -61,4 +61,5 @@ $route['login-validate'] = 'AdminLogin/loginCheck';
 $route['recover-validate'] = 'AdminLogin/recoverUser';
 $route['logout'] = 'AdminLogin/logout';
 $route['users'] = 'dashboard/users';
-$route['addUser'] = 'dashboard/addUser';
+$route['addUser'] = 'dashboard/users/addUser';
+$route['register-validate'] = 'dashboard/users/registrationValidate';

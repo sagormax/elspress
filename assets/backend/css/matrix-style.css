@@ -1589,6 +1589,11 @@ div.dataTables_wrapper .ui-widget-header {
 }
 
 a.activeItem{
-	background-color: #28b779;
-    color: #fff;	
+    color: #27a9e3!important;	
+}
+a.activeItem:hover{
+    color: #fff!important;	
+}
+.gradeX td.center{
+	text-align: center;
 }

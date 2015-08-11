@@ -1,12 +1,23 @@
 <!--breadcrumbs-->
   <div id="content-header">
-    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tables</a> </div>
+    <div id="breadcrumb"> <a href="<?php echo base_url(); ?>" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Users</a> </div>
     <h1>Users</h1>
   </div>
 <!--End-breadcrumbs-->
 
   <div class="container-fluid">
     <hr>
+
+    <?php if( $this->session->flashdata('successMsg') ): ?>
+        <div class="control-group successMsg">
+            <div class="controls">
+                <div class="alert alert-success alert-block">
+                      <?php echo $this->session->flashdata('successMsg'); ?>
+                </div>
+            </div>
+        </div>        
+    <?php endif; $this->session->set_flashdata('successMsg', ''); ?> 
+
     <div class="row-fluid">
         <div class="span12">
 
@@ -38,10 +49,13 @@
                           <td><?php echo $user->display_name; ?></td>
                           <td class="center"><?php echo $user->user_name; ?></td>
                           <td class="center"><?php echo $user->user_email; ?></td>
-                          <th>
-                            <?php echo ( $user->user_status == 1 ) ? '<span class="label label-success">Active</span>' : '<span class="label label-warning">Inactive</span>'; ?>
-                          </th>
-                          <td class="center"></td>
+                          <td class="center">
+                            <?php echo ( $user->user_status == 1 ) ? '<span class="label label-success"><i class="icon-ok-circle"></i> Active</span>' : '<span class="label label-warning"><i class="icon-info-sign"></i> Inactive</span>'; ?>
+                          </td>
+                          <td class="center">
+                            <button class="btn btn-success btn-mini">Edit</button>
+                            <button class="btn btn-danger btn-mini">Delete</button>
+                          </td>
                         </tr>
                   <?php endforeach; endif; ?>
                 </tbody>
