@@ -12,6 +12,14 @@ class UsersModel extends CI_Model{
 	}
 
 	/*
+	| Prepare Rand Number
+	*/
+	private function do_rand()
+	{
+		return md5(rand());
+	}	
+
+	/*
 	| Get All User Lists
 	*/	
 	public function usersList()
@@ -32,11 +40,35 @@ class UsersModel extends CI_Model{
 			'display_name'	=>	$this->input->post('fullname'),
 			'user_name'		=>	$this->input->post('username'),
 			'user_email'	=>	$this->input->post('email'),
+			'user_status'	=>	1,
+			'user_activation_key'  => $this->do_rand(),
+			'user_url'		=>	base_url('user/'.$this->input->post('username')),
 		);
 
 		try 
 		{
             return $this->db->insert('ep_users', $attr);
+        } 
+        catch(Exception $e) 
+        {
+            return false;
+        }
+
+	}
+
+	/*
+	| Delete User
+	*/
+	public function deleteUser( $id )
+	{
+
+		$attr = array(
+			'ID'	=>	$id
+		);
+
+		try 
+		{
+            return $this->db->delete('ep_users', $attr);
         } 
         catch(Exception $e) 
         {

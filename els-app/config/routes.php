@@ -61,5 +61,7 @@ $route['login-validate'] = 'AdminLogin/loginCheck';
 $route['recover-validate'] = 'AdminLogin/recoverUser';
 $route['logout'] = 'AdminLogin/logout';
 $route['users'] = 'dashboard/users';
+$route['users/(:any)'] = 'dashboard/users/$1';
+$route['users/(:any)/(:any)'] = 'dashboard/users/$1/$2';
 $route['addUser'] = 'dashboard/users/addUser';
 $route['register-validate'] = 'dashboard/users/registrationValidate';

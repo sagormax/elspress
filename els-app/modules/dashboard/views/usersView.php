@@ -1,3 +1,4 @@
+<div class="loader"><img src="<?php echo base_url('assets/backend/images/loading.gif'); ?>" alt="loading..."></div>
 <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> <a href="<?php echo base_url(); ?>" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Users</a> </div>
@@ -30,7 +31,7 @@
             <div class="dataTables_filter" id="example_filter"><label>Search: <input type="text" aria-controls="example"></label></div>
             
             <div class="widget-content nopadding">
-              <table class="table table-bordered data-table">
+              <table class="table table-bordered data-table userList">
                 <thead>
 
                   <tr>
@@ -45,16 +46,21 @@
 
                   <?php if( isset($getAllUser) ) : 
                       foreach( $getAllUser as $user ): ?>
-                        <tr class="gradeX">
+                        <tr class="gradeX" id="<?php echo $user->ID; ?>">
                           <td><?php echo $user->display_name; ?></td>
                           <td class="center"><?php echo $user->user_name; ?></td>
                           <td class="center"><?php echo $user->user_email; ?></td>
                           <td class="center">
                             <?php echo ( $user->user_status == 1 ) ? '<span class="label label-success"><i class="icon-ok-circle"></i> Active</span>' : '<span class="label label-warning"><i class="icon-info-sign"></i> Inactive</span>'; ?>
                           </td>
-                          <td class="center">
+                          <td class="center action">
+                            
                             <button class="btn btn-success btn-mini">Edit</button>
-                            <button class="btn btn-danger btn-mini">Delete</button>
+                            
+                            <?php if( $this->session->userdata('user_id') != $user->ID ) : ?>
+                              <a class="deleteAjax" id="<?php echo $user->ID; ?>" href="<?php echo base_url('users/deleteUser/'.$user->ID); ?>"><button class="btn btn-danger btn-mini">Delete</button></a>
+                            <?php endif; ?>
+
                           </td>
                         </tr>
                   <?php endforeach; endif; ?>

@@ -26,7 +26,7 @@
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
-    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text"><?php echo $this->session->userdata('user_name'); ?></span><b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
         <li class="divider"></li>
@@ -151,6 +151,7 @@
 <script src="<?php echo base_url(); ?>assets/backend/js/matrix.form_validation.js"></script> 
 <script src="<?php echo base_url(); ?>assets/backend/js/jquery.wizard.js"></script> 
 <script src="<?php echo base_url(); ?>assets/backend/js/jquery.uniform.js"></script> 
+<script src="<?php echo base_url(); ?>assets/backend/js/jquery.gritter.min.js"></script> 
 <script src="<?php echo base_url(); ?>assets/backend/js/select2.min.js"></script> 
 <script src="<?php echo base_url(); ?>assets/backend/js/matrix.popover.js"></script> 
 <script src="<?php echo base_url(); ?>assets/backend/js/jquery.dataTables.min.js"></script> 
@@ -183,8 +184,63 @@ function resetMenu() {
 
 $(document).ready(function(){
 
+  $('.loader').hide();  
+
   // Hide Error Msg 
   setTimeout(function(){ $(".successMsg").fadeOut(2000); }, 5000);
+
+  // User deleteAjax calling
+  $("a.deleteAjax").click(function(e){
+    e.preventDefault();
+
+    var re = confirm("Are You Sure to Delete.");
+    if (re == true) {
+
+        var url = $(this).attr('href');
+        var id = $(this).attr('id');
+        $('.loader').show();
+        $.ajax({
+          mimeType: 'text/html; charset=utf-8', // ! Need set mimeType only when run from local file
+          url: url,
+          type: 'GET',
+          success: function(data) {
+            if( data != -1 )
+            {
+              setTimeout(function(){ 
+                $("table.userList tr#"+id).fadeOut(); 
+                $('.loader').hide(); 
+                $.gritter.add({
+                  title:  'Success',
+                  text: 'This user has been deleted successfully.',
+                  sticky: false
+                }); 
+
+              }, 3000);
+              
+            }
+            else
+            {
+              alert('Delete Error....');
+              $('.loader').hide();
+            }
+            
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+          },
+          dataType: "html",
+          async: false
+        });
+
+        return;
+
+
+
+
+    } else {
+        return false;
+    }    
+  });
   
 });
 </script>
