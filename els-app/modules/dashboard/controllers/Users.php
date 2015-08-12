@@ -101,9 +101,15 @@ class Users extends MX_Controller {
 
 	// User delete
 	public function deleteUser( $id = null )
-	{
-		$feedback = $this->umodel->deleteUser( $id );
-		echo ( $feedback ) ? '1' : '-1';
+	{	
+		$current_user = $this->session->userdata('user_id');
+		if( $id != $current_user )
+		{
+			$feedback = $this->umodel->deleteUser( $id );
+			echo ( $feedback ) ? '1' : '-1';			
+		}
+		else
+			redirect('dashboard');
 	}
 
 
