@@ -17,22 +17,22 @@ class UsersModel extends CI_Model{
 	private function do_rand()
 	{
 		return md5(rand());
-	}	
+	}
 
 	/*
 	| Get All User Lists
-	*/	
+	*/
 	public function usersList()
-	{	
+	{
 		$attr = array('ID', 'user_name', 'user_nicename', 'user_email', 'user_url', 'user_registered', 'user_status', 'display_name');
 		$this->db->select($attr);
 		$query = $this->db->get('ep_users');
-		return $query->result();		
+		return $query->result();
 	}
 
 	/*
 	| Add New User
-	*/	
+	*/
 	public function addNewUser()
 	{
 		$attr = array(
@@ -45,11 +45,11 @@ class UsersModel extends CI_Model{
 			'user_url'		=>	base_url('user/'.$this->input->post('username')),
 		);
 
-		try 
+		try
 		{
             return $this->db->insert('ep_users', $attr);
-        } 
-        catch(Exception $e) 
+        }
+        catch(Exception $e)
         {
             return false;
         }
@@ -66,11 +66,61 @@ class UsersModel extends CI_Model{
 			'ID'	=>	$id
 		);
 
-		try 
+		try
 		{
             return $this->db->delete('ep_users', $attr);
-        } 
-        catch(Exception $e) 
+        }
+        catch(Exception $e)
+        {
+            return false;
+        }
+
+	}
+
+
+	/*
+	| Get Perticular User Info
+	*/
+	public function getUserInfo( $id )
+	{
+
+		$attr = array(
+			'ID'	=>	$id
+		);
+
+		$selectAttr = array('ID', 'user_name', 'user_email', 'user_nicename', 'display_name');
+
+		try
+		{
+			$this->db->select($selectAttr);
+			$query = $this->db->get_where('ep_users', $attr);
+			return $query->result();
+        }
+        catch(Exception $e)
+        {
+            return false;
+        }
+
+	}
+
+	/*
+	| User Update
+	*/
+	public function updateUser( $id )
+	{
+
+		$attr = array(
+			'display_name'	=>	$this->input->post('fullname'),
+			'user_email'	=>	$this->input->post('email'),
+			'user_nicename'	=>	$this->input->post('nickname'),
+		);
+
+		try
+		{
+			$this->db->where('ID', $id);
+			return $this->db->update('ep_users', $attr);
+        }
+        catch(Exception $e)
         {
             return false;
         }

@@ -65,3 +65,4 @@ $route['users/(:any)'] = 'dashboard/users/$1';
 $route['users/(:any)/(:any)'] = 'dashboard/users/$1/$2';
 $route['addUser'] = 'dashboard/users/addUser';
 $route['register-validate'] = 'dashboard/users/registrationValidate';
+$route['userEdit-validate'] = 'dashboard/users/userEditValidate';

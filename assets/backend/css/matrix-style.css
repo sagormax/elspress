@@ -1611,3 +1611,6 @@ a.activeItem:hover{
     position: absolute;
     top: 30%;
 }
+.alert span{
+	color: #cc0000;
+}

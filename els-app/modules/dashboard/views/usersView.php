@@ -13,11 +13,13 @@
         <div class="control-group successMsg">
             <div class="controls">
                 <div class="alert alert-success alert-block">
-                      <?php echo $this->session->flashdata('successMsg'); ?>
+                      <?php
+                      echo $this->session->flashdata('successMsg')." <br /> ";
+                      echo "<span>".$this->session->flashdata('mailSendingError')."</span>"; ?>
                 </div>
             </div>
-        </div>        
-    <?php endif; $this->session->set_flashdata('successMsg', ''); ?> 
+        </div>
+    <?php endif; $this->session->set_flashdata('successMsg', ''); ?>
 
     <div class="row-fluid">
         <div class="span12">
@@ -29,7 +31,7 @@
             </div>
 
             <div class="dataTables_filter" id="example_filter"><label>Search: <input type="text" aria-controls="example"></label></div>
-            
+
             <div class="widget-content nopadding">
               <table class="table table-bordered data-table userList">
                 <thead>
@@ -44,7 +46,7 @@
                 </thead>
                 <tbody>
 
-                  <?php if( isset($getAllUser) ) : 
+                  <?php if( isset($getAllUser) ) :
                       foreach( $getAllUser as $user ): ?>
                         <tr class="gradeX" id="<?php echo $user->ID; ?>">
                           <td><?php echo $user->display_name; ?></td>
@@ -54,9 +56,9 @@
                             <?php echo ( $user->user_status == 1 ) ? '<span class="label label-success"><i class="icon-ok-circle"></i> Active</span>' : '<span class="label label-warning"><i class="icon-info-sign"></i> Inactive</span>'; ?>
                           </td>
                           <td class="center action">
-                            
-                            <button class="btn btn-success btn-mini">Edit</button>
-                            
+
+                            <a href="<?php echo base_url('users/editUser/'.$user->ID); ?>"><button class="btn btn-success btn-mini">Edit</button></a>
+
                             <?php if( $this->session->userdata('user_id') != $user->ID ) : ?>
                               <a class="deleteAjax" id="<?php echo $user->ID; ?>" href="<?php echo base_url('users/deleteUser/'.$user->ID); ?>"><button class="btn btn-danger btn-mini">Delete</button></a>
                             <?php endif; ?>

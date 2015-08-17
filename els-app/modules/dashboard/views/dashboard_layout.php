@@ -20,7 +20,7 @@
 <div id="header">
   <h1><a href="<?php echo base_url('dashboard'); ?>">elsPress Admin</a></h1>
 </div>
-<!--close-Header-part--> 
+<!--close-Header-part-->
 
 
 <!--top-Header-menu-->
@@ -60,9 +60,9 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
-    <li><a href="<?php echo base_url('dashboard'); ?>"><i class="icon icon-home"></i> <span>Dashboard</span></a> 
+    <li><a href="<?php echo base_url('dashboard'); ?>"><i class="icon icon-home"></i> <span>Dashboard</span></a>
     </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Posts</span><span class="label label-important">4</span></a> 
+    <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Posts</span><span class="label label-important">4</span></a>
       <ul>
         <li><a href="#">Add Post</a></li>
         <li><a href="#">All Posts</a></li>
@@ -140,23 +140,23 @@
 
 <!--end-Footer-part-->
 
-<script src="<?php echo base_url(); ?>assets/backend/js/excanvas.min.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/jquery.min.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/jquery.ui.custom.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/bootstrap.min.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/jquery.flot.min.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/jquery.flot.resize.min.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/jquery.peity.min.js"></script>  
-<script src="<?php echo base_url(); ?>assets/backend/js/jquery.validate.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/matrix.form_validation.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/jquery.wizard.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/jquery.uniform.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/jquery.gritter.min.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/select2.min.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/matrix.popover.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/jquery.dataTables.min.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/matrix.tables.js"></script> 
-<script src="<?php echo base_url(); ?>assets/backend/js/matrix.js"></script> 
+<script src="<?php echo base_url(); ?>assets/backend/js/excanvas.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/jquery.ui.custom.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/jquery.flot.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/jquery.flot.resize.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/jquery.peity.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/jquery.validate.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/matrix.form_validation.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/jquery.wizard.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/jquery.uniform.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/jquery.gritter.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/select2.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/matrix.popover.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/matrix.tables.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/matrix.js"></script>
 
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to
@@ -165,13 +165,13 @@
 
       // if url is empty, skip the menu dividers and reset the menu selection to default
       if (newURL != "") {
-      
+
           // if url is "-", it is this page -- reset the menu:
           if (newURL == "-" ) {
-              resetMenu();            
-          } 
-          // else, send page to designated URL            
-          else {  
+              resetMenu();
+          }
+          // else, send page to designated URL
+          else {
             document.location.href = newURL;
           }
       }
@@ -184,9 +184,9 @@ function resetMenu() {
 
 $(document).ready(function(){
 
-  $('.loader').hide();  
+  $('.loader').hide();
 
-  // Hide Error Msg 
+  // Hide Error Msg
   setTimeout(function(){ $(".successMsg").fadeOut(2000); }, 5000);
 
   // User deleteAjax calling
@@ -206,24 +206,24 @@ $(document).ready(function(){
           success: function(data) {
             if( data != -1 )
             {
-              setTimeout(function(){ 
-                $("table.userList tr#"+id).fadeOut(); 
-                $('.loader').hide(); 
+              setTimeout(function(){
+                $("table.userList tr#"+id).fadeOut();
+                $('.loader').hide();
                 $.gritter.add({
                   title:  'Success',
                   text: 'This user has been deleted successfully.',
                   sticky: false
-                }); 
+                });
 
               }, 3000);
-              
+
             }
             else
             {
               alert('Delete Error....');
               $('.loader').hide();
             }
-            
+
           },
           error: function (jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
@@ -239,9 +239,9 @@ $(document).ready(function(){
 
     } else {
         return false;
-    }    
+    }
   });
-  
+
 });
 </script>
 
