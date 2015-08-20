@@ -4,6 +4,19 @@
   </div>
 <!--End-breadcrumbs-->
 
+<?php
+    $attr = array(
+      'table_name' => 'ep_menu',
+      'ul_class' => "nav nav-bar",
+      'ul_ID' => "nav",
+      'li_class' => "item_list",
+      'ul_submenu_class' => "secondary_menu",
+      'ul_submenu_ID' => "secondary",
+      'custom_child_class' => "",
+    );
+    echo $this->menu->generateFrontendMenu($attr);
+?>
+
 <!--Action boxes-->
   <div class="container-fluid">
     <div class="quick-actions_homepage">
@@ -21,9 +34,9 @@
 
       </ul>
     </div>
-<!--End-Action boxes-->    
+<!--End-Action boxes-->
 
-<!--Chart-box-->    
+<!--Chart-box-->
     <div class="row-fluid">
       <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
@@ -48,7 +61,7 @@
         </div>
       </div>
     </div>
-<!--End-Chart-box--> 
+<!--End-Chart-box-->
     <hr/>
     <div class="row-fluid">
       <div class="span6">
@@ -156,7 +169,7 @@
             <div class="new-update clearfix"> <i class="icon-question-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>I am alwayse here if you have any question</strong></a> <span>we glad that you choose our template</span> </span> <span class="update-date"><span class="update-day">01</span>jan</span> </div>
           </div>
         </div>
-        
+
       </div>
       <div class="span6">
         <div class="widget-box widget-chat">

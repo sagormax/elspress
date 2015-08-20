@@ -7,14 +7,14 @@ class AdminLogin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('users', 'usersModel');
-				
+
 	}
 
 	/*
-	| Controller Default Calling 
-	*/	
+	| Controller Default Calling
+	*/
 	public function index()
-	{	
+	{
 		if( $this->session->userdata('user_is_logged_in') ){
 			redirect('dashboard', 'refresh');
 		}
@@ -37,10 +37,10 @@ class AdminLogin extends CI_Controller {
 		$userName = $this->input->post('userName', TRUE);
 		$pass = $this->do_hash( $this->input->post('userPass') );
 		$feedBack = $this->usersModel->loginCredential($userName, $pass);
-		if( $feedBack ) 
+		if( $feedBack )
 		{
-			redirect('dashboard', 'refresh');	
-		} 
+			redirect('dashboard', 'refresh');
+		}
 		else
 		{
 			$this->session->set_flashdata('authError', 'username or password is invalid!');
@@ -50,20 +50,20 @@ class AdminLogin extends CI_Controller {
 
 	/*
 	| Recover Form Data Validation
-	*/	
+	*/
 	public function recoverUser()
 	{
 		echo 'done _ recover';
 	}
 
 	/*
-	| Logout 
-	*/	
+	| Logout
+	*/
 	public function logout()
 	{
 		$this->session->sess_destroy();
 		redirect('admin', 'refress');
-	}	
+	}
 
 
 

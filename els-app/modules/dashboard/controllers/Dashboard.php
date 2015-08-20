@@ -9,6 +9,7 @@ class Dashboard extends MX_Controller {
 		if( ! $this->session->userdata('user_is_logged_in') ){
 			redirect('admin', 'refresh');
 		}
+		$this->load->model('usersModel', 'umodel');
 	}
 
 	public function index()
@@ -16,7 +17,7 @@ class Dashboard extends MX_Controller {
 		$data['content'] = $this->load->view('homeView', '', true);
 		$this->load->view('dashboard_layout', $data);
 	}
-	
+
 	/*
 	| Default 404 page
 	*/
