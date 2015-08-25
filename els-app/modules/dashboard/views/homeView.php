@@ -15,7 +15,7 @@
 
           <?php
               $attr = array(
-                'table_name'          => 'ep-menu',
+                'table_name'          => 'ep_menu',
                 'menu_cat_ID'         =>  1,
                 'ul_class'            => "dropdown-menu multi-level",
                 'ul_ID'               => "nav",

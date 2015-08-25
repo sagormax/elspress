@@ -65,7 +65,7 @@
     <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Posts</span><span class="label label-important">4</span></a>
       <ul>
         <li><a href="#">Add Post</a></li>
-        <li><a href="#">All Posts</a></li>
+        <li><a href="<?php echo base_url('posts'); ?>">All Posts</a></li>
         <li><a href="#">Categories</a></li>
         <li><a href="#">Tags</a></li>
       </ul>
