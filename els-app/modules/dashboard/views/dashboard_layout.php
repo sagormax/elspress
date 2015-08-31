@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/css/uniform.css" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/css/select2.css" />
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/css/datepicker.css" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/css/matrix-style.css" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/css/matrix-media.css" />
 <link href="<?php echo base_url(); ?>assets/backend/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -64,7 +65,7 @@
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Posts</span><span class="label label-important">4</span></a>
       <ul>
-        <li><a href="#">Add Post</a></li>
+        <li><a href="<?php echo base_url('posts/addPost'); ?>">Add Post</a></li>
         <li><a href="<?php echo base_url('posts'); ?>">All Posts</a></li>
         <li><a href="#">Categories</a></li>
         <li><a href="#">Tags</a></li>
@@ -144,6 +145,7 @@
 <script src="<?php echo base_url(); ?>assets/backend/js/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/backend/js/jquery.ui.custom.js"></script>
 <script src="<?php echo base_url(); ?>assets/backend/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/bootstrap-datepicker.js"></script>
 <script src="<?php echo base_url(); ?>assets/backend/js/jquery.flot.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/backend/js/jquery.flot.resize.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/backend/js/jquery.peity.min.js"></script>
@@ -156,6 +158,7 @@
 <script src="<?php echo base_url(); ?>assets/backend/js/matrix.popover.js"></script>
 <script src="<?php echo base_url(); ?>assets/backend/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/backend/js/matrix.tables.js"></script>
+<script src="<?php echo base_url(); ?>assets/backend/js/tinymce/tinymce.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/backend/js/matrix.js"></script>
 
 <script type="text/javascript">
@@ -186,6 +189,13 @@ $(document).ready(function(){
 
   $('.loader').hide();
 
+  // Enable TyniMCE
+  tinymce.init({
+      selector: "#mytextarea"
+  });
+
+  // Datepicker
+  $('.datepicker').datepicker()
   // Hide Error Msg
   setTimeout(function(){ $(".successMsg").fadeOut(2000); }, 5000);
 

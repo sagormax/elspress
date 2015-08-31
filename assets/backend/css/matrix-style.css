@@ -1614,3 +1614,23 @@ a.activeItem:hover{
 .alert span{
 	color: #cc0000;
 }
+.mce-container{
+	max-width: 712px !important;
+}
+#mytextarea_ifr{
+	height: 250px !important;
+}
+.form-horizontal .control-label{
+	padding-left: 20px;
+	text-align: left;
+}
+.addpost-sidebar input{
+	margin: 0 0 20px 20px !important;
+}
+.select2-container{
+	margin-left: 20px;
+}
+.form-horizontal .control-group {
+  border-bottom: none !important;
+  border-top: none !important;
+}

@@ -160,7 +160,48 @@ $(document).ready(function(){
 
 	$('#lightbox').live('click', function() {
 		$('#lightbox').hide(200);
+		permalinkChecking();
 	});
+
+	// post title to permalink check
+	$('#title').focusout(function(){
+		var title = $(this).val().trim().replace(/\s+/g, '-');
+		$('#permalink').val(title);
+		permalinkChecking();
+	});
+
+	$('#permalink').focusout(function(){
+		var permalink = $(this).val().trim().replace(/\s+/g, '-');
+		$('#permalink').val(permalink);
+		permalinkChecking();
+	});
+
+	function permalinkChecking(){
+		var permalinkCkh = $('#permalink').val().trim().replace(/\s+/g, '-');
+		var url = $('#permalink').attr('url');
+
+        $.ajax({
+          mimeType: 'text/html; charset=utf-8', // ! Need set mimeType only when run from local file
+          url: url,
+          data: {'permalink' : permalinkCkh},
+          type: 'POST',
+          success: function(data) {
+            if( data == -1 )
+            {
+            	$('#permalink').val(permalinkCkh+"1");
+            }
+
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+          },
+          dataType: "html",
+          async: false
+        });
+
+
+	};
+	// End
 
 });
 

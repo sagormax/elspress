@@ -20,4 +20,29 @@ class Posts extends MX_Controller {
 		$this->load->view('dashboard/dashboard_layout', $data);
 	}
 
+	/*
+	| Add new post
+	*/
+	public function addPost()
+	{
+		$data['content'] = $this->load->view('add_post', '', true);
+		$this->load->view('dashboard/dashboard_layout', $data);
+	}
+
+	/*
+	| Ajax Permalink check
+	*/
+	public function permalinkCkh()
+	{
+		$permalink = $this->input->post('permalink', TRUE);
+		$feedback = $this->pmodel->permalinkCkh($permalink);
+		if ($feedback) {
+			echo -1;
+		}
+		else{
+			echo 1;
+		}
+
+	}
+
 }
