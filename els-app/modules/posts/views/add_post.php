@@ -20,7 +20,7 @@
 	<?php endif; $this->session->set_flashdata('successMsg', ''); ?>
 
 	<div class="row-fluid">
-		<form action="#" method="get" class="form-horizontal">
+		<form action="<?php echo base_url('Posts/submitPost/'); ?>" method="POST" name="submitPost" class="form-horizontal">
 		    <div class="span9">
 				<div class="widget-box">
 					<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -64,67 +64,67 @@
 					    <div class="control-group">
 					      <div class="addpost-sidebar">
 					      	<p class="control-label">Category :</p>
-			                <select multiple>
-			                  <option selected>Default</option>
-			                  <option>Second option</option>
-			                  <option>Third option</option>
-			                  <option>Fourth option</option>
-			                  <option>Fifth option</option>
-			                  <option>Sixth option</option>
-			                  <option>Seventh option</option>
-			                  <option>Eighth option</option>
+			                <select name="postCategory[]" multiple>
+			                  <option value='-1' selected>Uncategorized</option>
+			                  <?php
+			                  if( isset($postCat) ):
+			                  	foreach ($postCat as $cat) {
+			                  		echo '<option value="'.$cat->ID.'">'.$cat->cat_name.'</option>';
+			                  	}
+			                  endif;
+			                  ?>
 			                </select>
 					      </div>
 					    </div>
 					    <div class="control-group">
 					      <div class="addpost-sidebar">
 					      	<p class="control-label">Tag :</p>
-			                <select multiple>
-			                  <option selected>Default</option>
-			                  <option>Second option</option>
-			                  <option>Third option</option>
-			                  <option>Fourth option</option>
-			                  <option>Fifth option</option>
-			                  <option>Sixth option</option>
-			                  <option>Seventh option</option>
-			                  <option>Eighth option</option>
+			                <select name="postTag[]" multiple>
+			                  <option value='-1' selected>Default</option>
+			                  <?php
+			                  if( isset($postTag) ):
+			                  	foreach ($postTag as $tag) {
+			                  		echo '<option value="'.$tag->ID.'">'.$tag->tag_name.'</option>';
+			                  	}
+			                  endif;
+			                  ?>
 			                </select>
 					      </div>
 					    </div>
 					    <div class="control-group">
 					      <div class="addpost-sidebar">
 					      	<p class="control-label">Status :</p>
-			                <select>
-			                  <option selected>Publish</option>
-			                  <option>Disable</option>
+			                <select name="postStatus">
+			                  <option value="1" selected>Publish</option>
+			                  <option value="0">Disable</option>
 			                </select>
 					      </div>
 					    </div>
 					    <div class="control-group">
 					      <div class="addpost-sidebar">
 					      	<p class="control-label">Post Parent :</p>
-			                <select>
-			                  <option selected>Default</option>
-			                  <option>Second option</option>
-			                  <option>Third option</option>
-			                  <option>Fourth option</option>
-			                  <option>Fifth option</option>
-			                  <option>Sixth option</option>
-			                  <option>Seventh option</option>
-			                  <option>Eighth option</option>
+			                <select name="postParent">
+			                  <option value='-1' selected>Default</option>
+			                  <?php
+			                  if( isset($postLists) ):
+			                  	foreach ($postLists as $post) {
+			                  		echo '<option value="'.$post->ID.'">'.$post->post_title.'</option>';
+			                  	}
+			                  endif;
+			                  ?>
 			                </select>
 					      </div>
 					    </div>
 					    <div class="control-group">
 					      <div class="addpost-sidebar">
 					      	<p class="control-label">Order :</p>
-			                <input type="text" class="span11" placeholder='Order'>
+			                <input type="text" class="span11" placeholder='Order' name="postOrder">
 					      </div>
 					    </div>
 					    <div class="control-group">
 					      <div class="addpost-sidebar">
 					      	<p class="control-label">Date :</p>
-			                <input type="text" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
+			                <input type="text" name="postDate" data-date="<?php echo date('d-m-Y'); ?>" data-date-format="dd-mm-yyyy" value="<?php echo date('d-m-Y'); ?>" class="datepicker span11">
 					      </div>
 					    </div>
 

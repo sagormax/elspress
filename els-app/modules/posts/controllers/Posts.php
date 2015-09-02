@@ -15,9 +15,33 @@ class Posts extends MX_Controller {
 
 	public function index()
 	{
-		$data['postLists'] = $this->pmodel->postsList();
+		$data['postLists'] = $this->getPostHistory();
 		$data['content'] = $this->load->view('all_posts', $data, true);
 		$this->load->view('dashboard/dashboard_layout', $data);
+	}
+
+	/*
+	| Get all post history
+	*/
+	private function getPostHistory()
+	{
+		return $this->pmodel->postsList();
+	}
+
+	/*
+	| Get all Category history
+	*/
+	private function getPostCatHistory()
+	{
+		return $this->pmodel->getPostCatHistory();
+	}
+
+	/*
+	| Get all Tag history
+	*/
+	private function getPostTagHistory()
+	{
+		return $this->pmodel->getPostTagHistory();
 	}
 
 	/*
@@ -25,8 +49,22 @@ class Posts extends MX_Controller {
 	*/
 	public function addPost()
 	{
-		$data['content'] = $this->load->view('add_post', '', true);
+		$data['postLists'] = $this->getPostHistory();
+		$data['postCat'] = $this->getPostCatHistory();
+		$data['postTag'] = $this->getPostTagHistory();
+		$data['content'] = $this->load->view('add_post', $data, true);
 		$this->load->view('dashboard/dashboard_layout', $data);
+	}
+
+	/*
+	| Submit new post
+	*/
+	public function submitPost()
+	{
+
+		$feedback = $this->pmodel->submitPost();
+		var_dump($feedback);
+		//var_dump($attr);
 	}
 
 	/*
