@@ -63,7 +63,7 @@
                             <td class="center"><?php echo $post->post_modified; ?></td>
                             <td class="center action">
 
-                              <a href="<?php echo base_url('content/'.$post->post_permalink); ?>"><button class="btn btn-warning btn-mini">View</button></a>
+                              <a href="<?php echo base_url('content/'.$post->post_permalink); ?>" target="_blank"><button class="btn btn-warning btn-mini">View</button></a>
 
                               <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-mini">Edit</button></a>
 

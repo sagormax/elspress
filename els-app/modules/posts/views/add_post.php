@@ -124,7 +124,7 @@
 					    <div class="control-group">
 					      <div class="addpost-sidebar">
 					      	<p class="control-label">Date :</p>
-			                <input type="text" name="postDate" data-date="<?php echo date('d-m-Y'); ?>" data-date-format="dd-mm-yyyy" value="<?php echo date('d-m-Y'); ?>" class="datepicker span11">
+			                <input type="text" name="postDate" data-date="<?php echo date('Y-m-d'); ?>" data-date-format="yyyy-mm-dd" value="<?php echo date('Y-m-d'); ?>" class="datepicker span11">
 					      </div>
 					    </div>
 

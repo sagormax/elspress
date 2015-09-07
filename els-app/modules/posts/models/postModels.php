@@ -50,41 +50,61 @@ class PostModels extends CI_Model{
 	{
 		$catSet = $this->input->post('postCategory[]', TRUE);
 		$tagSet = $this->input->post('postTag[]', TRUE);
+		$pStatus = $this->input->post('postStatus', TRUE);
+		$pStatus = ( $pStatus == 1 ) ? "publish" : "disable";
+		$pParent = $this->input->post('postParent', TRUE);
+		$pParent = ( $pParent == -1 ) ? 0 : $pParent;
 		//$tag = implode(',', $tagSet);
+		$cat = $this->CatTagFilter($catSet, 'ep_post_category', 'cat_permalink');
+		$tag = $this->CatTagFilter($tagSet, 'ep_post_tag', 'tag_permalink');
 
-		$this->db->select('cat_permalink');
-		$this->db->where_in('ID', $catSet);
-		$catQuery = $this->db->get('ep_post_category');
-		$results = $catQuery->result();
-		$data = array();
-		foreach ($results as $key => $result) {
-			array_push($data, $result->cat_permalink);
+		$attr = array(
+			'post_title'		=> $this->input->post('postTitle', TRUE),
+			'post_permalink'  	=> $this->input->post('postPermalink', TRUE),
+			'post_content'  	=> $this->input->post('postDescription', TRUE),
+			'post_excerpt'  	=> $this->input->post('postExcerpt', TRUE),
+			'post_categories'  	=> $cat,
+			'post_tag'  		=> $tag,
+			'post_status'  		=> $pStatus,
+			'post_parent'  		=> $pParent,
+			'menu_order'  		=> $this->input->post('postOrder', TRUE),
+			'post_modified'  	=> $this->input->post('postDate', TRUE),
+			'post_author' 		=> $this->session->userdata('user_name'),
+		);
+
+		try {
+			return $this->db->insert('ep_posts', $attr);
+		} catch (Exception $e) {
+			return false;
 		}
 
-		$cat = implode(',', $data);
-
-		//var_dump($data);
-		echo $cat;
-
-		// $attr = array(
-		// 	'post_title'		=> $this->input->post('postTitle', TRUE),
-		// 	'post_permalink'  	=> $this->input->post('postPermalink', TRUE),
-		// 	'post_content'  	=> $this->input->post('postDescription', TRUE),
-		// 	'post_excerpt'  	=> $this->input->post('postExcerpt', TRUE),
-		// 	'post_categories'  	=> $cat,
-		// 	'post_tag'  		=> $tag,
-		// 	'post_status'  		=> $this->input->post('postStatus', TRUE),
-		// 	'post_parent'  		=> $this->input->post('postParent', TRUE),
-		// 	'menu_order'  		=> $this->input->post('postOrder', TRUE),
-		// 	'post_modified'  	=> $this->input->post('postDate', TRUE),
-		// );
-
-		// try {
-		// 	return $this->db->insert('ep_posts', $attr);
-		// } catch (Exception $e) {
-		// 	return false;
-		// }
-
 	}
+
+	/*
+	| Cat and tag filter
+	*/
+	private function CatTagFilter($items, $table, $select)
+	{
+		if( !empty($items) )
+		{
+			$this->db->select($select);
+			$this->db->where_in('ID', $items);
+			$catQuery = $this->db->get($table);
+			$results = $catQuery->result();
+			$data = array();
+			foreach ($results as $key => $result) {
+				array_push($data, $result->$select);
+			}
+
+			$results = implode(',', $data);
+
+			return $results;
+		}
+		else{	
+			return '';
+		}
+	}
+
+
 
 }
