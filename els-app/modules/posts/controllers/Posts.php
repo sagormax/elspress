@@ -61,10 +61,15 @@ class Posts extends MX_Controller {
 	*/
 	public function submitPost()
 	{
-
 		$feedback = $this->pmodel->submitPost();
-		var_dump($feedback);
-		//var_dump($attr);
+		if( $feedback ){
+			$this->session->set_flashdata('successMsg', 'Post added successfully.');
+			redirect('posts/addPost', 'refresh');
+		}
+		else{
+			$this->session->set_flashdata('errorMsg', 'Post added Failed.');
+			redirect('posts/addPost', 'refresh');
+		}
 	}
 
 	/*

@@ -14,8 +14,8 @@
             <div class="controls">
                 <div class="alert alert-success alert-block">
                       <?php
-                      echo $this->session->flashdata('successMsg')." <br /> ";
-                      echo "<span>".$this->session->flashdata('mailSendingError')."</span>"; ?>
+                      echo $this->session->flashdata('successMsg'); 
+                      ?>
                 </div>
             </div>
         </div>
