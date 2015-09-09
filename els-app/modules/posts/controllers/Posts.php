@@ -88,4 +88,104 @@ class Posts extends MX_Controller {
 
 	}
 
+	/*
+	| Category View
+	*/
+	public function categories()
+	{
+		$data['postCat'] = $this->getPostCatHistory();
+		$data['content'] = $this->load->view('add_cat', $data, true);
+		$this->load->view('dashboard/dashboard_layout', $data);
+	}
+
+
+	/*
+	| Tag View
+	*/
+	public function tag()
+	{
+		$data['postTag'] = $this->getPostTagHistory();
+		$data['content'] = $this->load->view('add_tag', $data, true);
+		$this->load->view('dashboard/dashboard_layout', $data);
+	}	
+
+	/*
+	| Category Submit
+	*/
+	public function submitCat()
+	{
+		$this->form_validation->set_rules('catName', 'Category Name', 'trim|required|xss_clean|is_unique[ep_post_category.cat_name]');
+		
+		// set validation custom message for username
+		$this->form_validation->set_message('is_unique', 'Category Name already exists.');
+
+		if( $this->form_validation->run() == FALSE )
+		{
+			$this->session->set_flashdata('errorMsg', 'Category Name already exists.');
+			redirect('posts/categories', 'refresh');
+		}
+		else
+		{
+			$feedback = $this->pmodel->submitCat();
+			if( $feedback ){
+				$this->session->set_flashdata('successMsg', 'Category added successfully.');
+				redirect('posts/categories', 'refresh');
+			}
+			else{
+				$this->session->set_flashdata('errorMsg', 'Category added failed.');
+				redirect('posts/categories', 'refresh');
+			}			
+		}
+	}
+
+
+	/*
+	| Category Submit
+	*/
+	public function submitTag()
+	{
+		$this->form_validation->set_rules('tagName', 'Tag Name', 'trim|required|xss_clean|is_unique[ep_post_tag.tag_name]');
+		
+		// set validation custom message for username
+		$this->form_validation->set_message('is_unique', 'Tag Name already exists.');
+
+		if( $this->form_validation->run() == FALSE )
+		{
+			$this->session->set_flashdata('errorMsg', 'Tag Name already exists.');
+			redirect('posts/tag', 'refresh');
+		}
+		else
+		{
+			$feedback = $this->pmodel->submitTag();
+			if( $feedback ){
+				$this->session->set_flashdata('successMsg', 'Tag added successfully.');
+				redirect('posts/tag', 'refresh');
+			}
+			else{
+				$this->session->set_flashdata('errorMsg', 'Tag added failed.');
+				redirect('posts/tag', 'refresh');
+			}			
+		}
+	}		
+		
+
+	/*
+	| Edit post view
+	*/	
+	public function getPost($id = null)
+	{
+		$data['post'] = $this->pmodel->getPostByID($id);
+		$data['postLists'] = $this->getPostHistory();
+		$data['postCat'] = $this->getPostCatHistory();
+		$data['postTag'] = $this->getPostTagHistory();
+		if( $data['post'] ){
+			$data['content'] = $this->load->view('edit_posts', $data, true);
+			$this->load->view('dashboard/dashboard_layout', $data);
+		}
+		else{
+			redirect('posts', 'refresh');
+		}	
+	}	
+
+
 }

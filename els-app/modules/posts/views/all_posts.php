@@ -65,7 +65,7 @@
 
                               <a href="<?php echo base_url('content/'.$post->post_permalink); ?>" target="_blank"><button class="btn btn-warning btn-mini">View</button></a>
 
-                              <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-mini">Edit</button></a>
+                              <a href="<?php echo base_url('posts/getPost/'.$post->ID); ?>"><button class="btn btn-success btn-mini">Edit</button></a>
 
                               <a class="deleteAjax" id="" href=""><button class="btn btn-danger btn-mini">Delete</button></a>
 

@@ -54,7 +54,6 @@ class PostModels extends CI_Model{
 		$pStatus = ( $pStatus == 1 ) ? "publish" : "disable";
 		$pParent = $this->input->post('postParent', TRUE);
 		$pParent = ( $pParent == -1 ) ? 0 : $pParent;
-		//$tag = implode(',', $tagSet);
 		$cat = $this->CatTagFilter($catSet, 'ep_post_category', 'cat_permalink');
 		$tag = $this->CatTagFilter($tagSet, 'ep_post_tag', 'tag_permalink');
 
@@ -105,6 +104,62 @@ class PostModels extends CI_Model{
 		}
 	}
 
+
+
+	/*
+	| Submit new Category
+	*/
+	public function submitCat()
+	{
+		$catName = $this->input->post('catName', TRUE);
+		$catPermalink = strtolower($catName);
+		$catPermalink = str_replace(" ", "-", $catPermalink);
+
+		$attr = array(
+			'cat_name'		=> $catName,
+			'cat_permalink'	=> $catPermalink,
+		);
+
+		try {
+			return $this->db->insert('ep_post_category', $attr);
+		} catch (Exception $e) {
+			return false;
+		}
+
+	}
+
+
+	/*
+	| Submit new Tag
+	*/
+	public function submitTag()
+	{
+		$tagName = $this->input->post('tagName', TRUE);
+		$tagPermalink = strtolower($tagName);
+		$tagPermalink = str_replace(" ", "-", $tagPermalink);
+
+		$attr = array(
+			'tag_name'		=> $tagName,
+			'tag_permalink'	=> $tagPermalink,
+		);
+
+		try {
+			return $this->db->insert('ep_post_tag', $attr);
+		} catch (Exception $e) {
+			return false;
+		}
+
+	}	
+
+	/*
+	| Get post by ID
+	*/		
+	public function getPostByID($id)
+	{
+		$query = $this->db->get_where('ep_posts', array('ID' => $id));
+		return $query->result();
+
+	}
 
 
 }
