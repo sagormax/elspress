@@ -172,6 +172,7 @@ $(document).ready(function(){
   // User deleteAjax calling
   $("a.deleteAjax").click(function(e){
     e.preventDefault();
+    var itemName = $("a.deleteAjax").attr('itemName');
 
     var re = confirm("Are You Sure to Delete.");
     if (re == true) {
@@ -191,7 +192,7 @@ $(document).ready(function(){
                 $('.loader').hide();
                 $.gritter.add({
                   title:  'Success',
-                  text: 'This user has been deleted successfully.',
+                  text: 'This '+itemName+' has been deleted successfully.',
                   sticky: false
                 });
 

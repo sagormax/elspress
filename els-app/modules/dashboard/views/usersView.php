@@ -1,4 +1,4 @@
-<div class="loader"><img src="<?php echo base_url('assets/backend/images/loading.gif'); ?>" alt="loading..."></div>
+<div class="loader"><img src="<?php echo base_url('assets/backend/img/loading.gif'); ?>" alt="loading..."></div>
 <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> <a href="<?php echo base_url(); ?>" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Users</a> </div>
@@ -60,7 +60,7 @@
                             <a href="<?php echo base_url('users/editUser/'.$user->ID); ?>"><button class="btn btn-success btn-mini">Edit</button></a>
 
                             <?php if( $this->session->userdata('user_id') != $user->ID ) : ?>
-                              <a class="deleteAjax" id="<?php echo $user->ID; ?>" href="<?php echo base_url('users/deleteUser/'.$user->ID); ?>"><button class="btn btn-danger btn-mini">Delete</button></a>
+                              <a class="deleteAjax" itemName="user" id="<?php echo $user->ID; ?>" href="<?php echo base_url('users/deleteUser/'.$user->ID); ?>"><button class="btn btn-danger btn-mini">Delete</button></a>
                             <?php endif; ?>
 
                           </td>

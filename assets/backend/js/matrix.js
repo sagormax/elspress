@@ -179,11 +179,12 @@ $(document).ready(function(){
 	function permalinkChecking(){
 		var permalinkCkh = $('#permalink').val().trim().replace(/\s+/g, '-');
 		var url = $('#permalink').attr('url');
+		var ID  = $('#permalink').attr('postID');
 
         $.ajax({
           mimeType: 'text/html; charset=utf-8', // ! Need set mimeType only when run from local file
           url: url,
-          data: {'permalink' : permalinkCkh},
+          data: {'permalink' : permalinkCkh, 'id' : ID},
           type: 'POST',
           success: function(data) {
             if( data == -1 )

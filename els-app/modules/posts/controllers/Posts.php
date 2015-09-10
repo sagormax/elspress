@@ -73,12 +73,40 @@ class Posts extends MX_Controller {
 	}
 
 	/*
+	| Update new post
+	*/
+	public function updatePost()
+	{
+		$updatePostID = $this->input->post('updatePostID', TRUE);
+		$feedback = $this->pmodel->updatePost();
+		if( $feedback ){
+			$this->session->set_flashdata('successMsg', 'Post updated successfully.');
+			redirect('posts/getPost/'.$updatePostID, 'refresh');
+		}
+		else{
+			$this->session->set_flashdata('errorMsg', 'Post updated Failed.');
+			redirect('posts/getPost/'.$updatePostID, 'refresh');
+		}
+	}	
+
+	/*
+	| Delete post
+	*/
+	public function deletePost( $id = null )
+	{
+		$feedback = $this->pmodel->deletePost( $id );
+		echo ( $feedback ) ? '1' : '-1';
+
+	}	
+
+	/*
 	| Ajax Permalink check
 	*/
 	public function permalinkCkh()
 	{
 		$permalink = $this->input->post('permalink', TRUE);
-		$feedback = $this->pmodel->permalinkCkh($permalink);
+		$ID = $this->input->post('id', TRUE);
+		$feedback = $this->pmodel->permalinkCkh($permalink, $ID);
 		if ($feedback) {
 			echo -1;
 		}
@@ -98,6 +126,16 @@ class Posts extends MX_Controller {
 		$this->load->view('dashboard/dashboard_layout', $data);
 	}
 
+
+	/*
+	| Delete category
+	*/
+	public function deleteCat( $id = null )
+	{
+		$feedback = $this->pmodel->deleteCat( $id );
+		echo ( $feedback ) ? '1' : '-1';
+
+	}
 
 	/*
 	| Tag View

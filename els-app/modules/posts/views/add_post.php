@@ -19,6 +19,16 @@
 	    </div>
 	<?php endif; $this->session->set_flashdata('successMsg', ''); ?>
 
+	<?php if( $this->session->flashdata('errorMsg') ): ?>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box alert alert-error">
+                      <?php echo $this->session->flashdata('errorMsg'); ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>	
+
 	<div class="row-fluid">
 		<form action="<?php echo base_url('Posts/submitPost/'); ?>" method="POST" name="submitPost" class="form-horizontal">
 		    <div class="span9">
@@ -36,7 +46,7 @@
 					    <div class="control-group">
 					      <label class="control-label">Permalink :</label>
 					      <div class="controls">
-					        <p><?php echo base_url('content').'/'; ?></p> <input url="<?php echo base_url('posts/permalinkCkh'); ?>" type="text" id="permalink" class="span11 permalink" name="postPermalink" />
+					        <p><?php echo base_url('content').'/'; ?></p> <input postID="-1" url="<?php echo base_url('posts/permalinkCkh'); ?>" type="text" id="permalink" class="span11 permalink" name="postPermalink" />
 					      </div>
 					    </div>
 					    <div class="control-group">
