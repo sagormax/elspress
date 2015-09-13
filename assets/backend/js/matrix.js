@@ -167,19 +167,29 @@ $(document).ready(function(){
 	$('#title').focusout(function(){
 		var title = $(this).val().trim().replace(/\s+/g, '-');
 		$('#permalink').val(title);
-		permalinkChecking();
+		var selector = '#permalink';
+		permalinkChecking(selector);
 	});
 
 	$('#permalink').focusout(function(){
 		var permalink = $(this).val().trim().replace(/\s+/g, '-');
 		$('#permalink').val(permalink);
-		permalinkChecking();
+		var selector = '#permalink';
+		permalinkChecking(selector);
 	});
 
-	function permalinkChecking(){
-		var permalinkCkh = $('#permalink').val().trim().replace(/\s+/g, '-');
-		var url = $('#permalink').attr('url');
-		var ID  = $('#permalink').attr('postID');
+	// Tag
+	$('#tagName').focusout(function(){
+		var title = $(this).val().trim().replace(/\s+/g, '-');
+		$('#TagPermalink').val(title);
+		var selector = '#TagPermalink';
+		permalinkChecking(selector);
+	});
+
+	function permalinkChecking(selector){
+		var permalinkCkh = $(selector).val().trim().replace(/\s+/g, '-');
+		var url = $(selector).attr('url');
+		var ID  = $(selector).attr('postID');
 
         $.ajax({
           mimeType: 'text/html; charset=utf-8', // ! Need set mimeType only when run from local file
@@ -189,7 +199,7 @@ $(document).ready(function(){
           success: function(data) {
             if( data == -1 )
             {
-            	$('#permalink').val(permalinkCkh+"1");
+            	$(selector).val(permalinkCkh+"1");
             }
 
           },

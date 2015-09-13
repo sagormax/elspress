@@ -24,6 +24,7 @@ class PostModels extends CI_Model{
 		return $query->num_rows();
 	}
 
+
 	/*
 	| Category history
 	*/
@@ -227,7 +228,26 @@ class PostModels extends CI_Model{
 			return false;
 		}
 
-	}	
+	}
+
+	/*
+	| Delete Tag
+	*/
+	public function deleteTag( $id )
+	{
+		$attr = array(
+			'ID'	=>	$id
+		);
+
+		try
+		{
+            return $this->db->delete('ep_post_tag', $attr);
+        }
+        catch(Exception $e)
+        {
+            return false;
+        }
+	}		
 
 	/*
 	| Get post by ID

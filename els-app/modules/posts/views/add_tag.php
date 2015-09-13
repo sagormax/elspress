@@ -1,3 +1,4 @@
+<div class="loader"><img src="<?php echo base_url('assets/backend/img/loading.gif'); ?>" alt="loading..."></div>
 <!--breadcrumbs-->
 <div id="content-header">
 	<div id="breadcrumb"> <a href="<?php echo base_url(); ?>" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tag</a> </div>
@@ -61,11 +62,11 @@
 		                            <td class="center">-</td>
 		                            <td class="center action">
 
-		                              <a href="<?php echo base_url('tag/'.$tag->tag_name); ?>" target="_blank"><button class="btn btn-warning btn-mini">View</button></a>
+		                              <a href="<?php echo base_url('tag/'.$tag->tag_permalink); ?>" target="_blank"><button class="btn btn-warning btn-mini">View</button></a>
 
 		                              <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-mini">Edit</button></a>
 
-		                              <a class="deleteAjax" id="" href=""><button class="btn btn-danger btn-mini">Delete</button></a>
+		                              <a class="deleteAjax" itemName="Tag" id="<?php echo $tag->ID; ?>" href="<?php echo base_url('posts/deleteTag/'.$tag->ID); ?>"><button class="btn btn-danger btn-mini">Delete</button></a>
 
 		                            </td>
 		                        </tr>
@@ -88,7 +89,8 @@
 						<div class="control-group">
 					      <label class="control-label">Name :</label>
 					      <div class="controls">
-					        <input type="text" id="name" class="span11" placeholder="Name" name="tagName" />
+					        <input type="text" id="tagName" class="span11" placeholder="Name" name="tagName" />
+					        <input type="hidden" class="span11" name="tagPermalink" />
 					      </div>
 					    </div>
 

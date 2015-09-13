@@ -91,6 +91,7 @@
 					      <label class="control-label">Name :</label>
 					      <div class="controls">
 					        <input type="text" id="name" class="span11" placeholder="Name" name="catName" />
+					      	<input type="hidden" class="span11" name="catPermalink" />
 					      </div>
 					    </div>
 

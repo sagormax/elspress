@@ -100,7 +100,7 @@ class Posts extends MX_Controller {
 	}	
 
 	/*
-	| Ajax Permalink check
+	| Ajax Permalink check for new post
 	*/
 	public function permalinkCkh()
 	{
@@ -115,6 +115,7 @@ class Posts extends MX_Controller {
 		}
 
 	}
+	
 
 	/*
 	| Category View
@@ -148,11 +149,21 @@ class Posts extends MX_Controller {
 	}	
 
 	/*
+	| Delete Tag
+	*/
+	public function deleteTag( $id = null )
+	{
+		$feedback = $this->pmodel->deleteTag( $id );
+		echo ( $feedback ) ? '1' : '-1';
+
+	}	
+
+	/*
 	| Category Submit
 	*/
 	public function submitCat()
 	{
-		$this->form_validation->set_rules('catName', 'Category Name', 'trim|required|xss_clean|is_unique[ep_post_category.cat_name]');
+		$this->form_validation->set_rules('catPermalink', 'Category Name', 'trim|required|xss_clean|is_unique[ep_post_category.cat_permalink]');
 		
 		// set validation custom message for username
 		$this->form_validation->set_message('is_unique', 'Category Name already exists.');
@@ -182,7 +193,7 @@ class Posts extends MX_Controller {
 	*/
 	public function submitTag()
 	{
-		$this->form_validation->set_rules('tagName', 'Tag Name', 'trim|required|xss_clean|is_unique[ep_post_tag.tag_name]');
+		$this->form_validation->set_rules('tagPermalink', 'Tag Name', 'trim|required|xss_clean|is_unique[ep_post_tag.tag_permalink]');
 		
 		// set validation custom message for username
 		$this->form_validation->set_message('is_unique', 'Tag Name already exists.');
