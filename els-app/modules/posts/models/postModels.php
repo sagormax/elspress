@@ -35,6 +35,15 @@ class PostModels extends CI_Model{
 	}
 
 	/*
+	| Category by ID
+	*/
+	public function getCatByID($id)
+	{
+		$query = $this->db->get_where('ep_post_category', array('ID' => $id));
+		return $query->result();
+	}
+
+	/*
 	| Tag history
 	*/
 	public function getPostTagHistory()

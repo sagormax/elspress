@@ -64,7 +64,7 @@
 
 		                              <a href="<?php echo base_url('category/'.$cat->cat_permalink); ?>" target="_blank"><button class="btn btn-warning btn-mini">View</button></a>
 
-		                              <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-mini">Edit</button></a>
+		                              <a href="<?php echo base_url('posts/updateCatView/'.$cat->ID); ?>"><button class="btn btn-success btn-mini">Edit</button></a>
 
 		                              <a class="deleteAjax" itemName="category" id="<?php echo $cat->ID; ?>" href="<?php echo base_url('posts/deleteCat/'.$cat->ID); ?>"><button class="btn btn-danger btn-mini">Delete</button></a>
 
@@ -78,32 +78,74 @@
 				</div>
 			</div>
 	    </div>
+		
+		<?php
+		if( isset($editCat) ):
+		?>
 
-		<form action="<?php echo base_url('Posts/submitCat/'); ?>" method="POST" name="submitPost" class="form-horizontal">
-			<div class="span12">
-				<div class="widget-box">
-					<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-					  <h5>Add Category</h5>
+			<form action="<?php echo base_url('Posts/updateCat/'); ?>" method="POST" name="submitPost" class="form-horizontal">
+				<div class="span12">
+					<div class="widget-box">
+						<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+						  <h5>Update Category</h5>
+						</div>
+						<div class="widget-content nopadding">
+						
+							<div class="control-group">
+						      <label class="control-label">Name :</label>
+						      <div class="controls">
+						        <input type="text" id="name" class="span11" placeholder="Name" name="catName" value="<?php echo $editCat[0]->cat_name; ?>" />
+						      	
+						      </div>
+						    </div>
+
+						    <div class="control-group">
+						      <label class="control-label">Permalink :</label>
+						      <div class="controls">
+						      	<input type="text" class="span11" name="catPermalink" value="<?php echo $editCat[0]->cat_permalink; ?>" />
+						      </div>
+						    </div>
+
+
+							<div class="form-actions">
+						      <button type="submit" class="btn btn-success">Update Category</button>
+						    </div>
+
+						</div>
 					</div>
-					<div class="widget-content nopadding">
-					
-						<div class="control-group">
-					      <label class="control-label">Name :</label>
-					      <div class="controls">
-					        <input type="text" id="name" class="span11" placeholder="Name" name="catName" />
-					      	<input type="hidden" class="span11" name="catPermalink" />
-					      </div>
-					    </div>
+			    </div>
+		    </form>
+
+		<?php
+		else:
+		?>
+			<form action="<?php echo base_url('Posts/submitCat/'); ?>" method="POST" name="submitPost" class="form-horizontal">
+				<div class="span12">
+					<div class="widget-box">
+						<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+						  <h5>Add Category</h5>
+						</div>
+						<div class="widget-content nopadding">
+						
+							<div class="control-group">
+						      <label class="control-label">Name :</label>
+						      <div class="controls">
+						        <input type="text" id="name" class="span11" placeholder="Name" name="catName" />
+						      	<input type="hidden" class="span11" name="catPermalink" />
+						      </div>
+						    </div>
 
 
-						<div class="form-actions">
-					      <button type="submit" class="btn btn-success">Add Category</button>
-					    </div>
+							<div class="form-actions">
+						      <button type="submit" class="btn btn-success">Add Category</button>
+						    </div>
 
+						</div>
 					</div>
-				</div>
-		    </div>
-	    </form>
-
+			    </div>
+		    </form>
+	    <?php
+		endif;
+		?>
 	</div>
 </div>

@@ -187,9 +187,20 @@ class Posts extends MX_Controller {
 		}
 	}
 
+	/*
+	| Category update view
+	*/
+	public function updateCatView( $id = null )
+	{
+		$data['editCat'] = $this->pmodel->getCatByID($id);
+		$data['postCat'] = $this->getPostCatHistory();
+		$data['content'] = $this->load->view('add_cat', $data, true);
+		$this->load->view('dashboard/dashboard_layout', $data);
+	}
+
 
 	/*
-	| Category Submit
+	| Tag Submit
 	*/
 	public function submitTag()
 	{
