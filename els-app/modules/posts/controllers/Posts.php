@@ -200,6 +200,23 @@ class Posts extends MX_Controller {
 
 
 	/*
+	| Category update
+	*/
+	public function updateCat()
+	{	
+		$feedback = $this->pmodel->updateCat();
+		if( $feedback ){
+			$this->session->set_flashdata('successMsg', 'Category updated successfully.');
+			redirect('posts/categories', 'refresh');	
+		}
+		else{
+			$this->session->set_flashdata('errorMsg', 'Category updated failed.');
+			redirect('posts/categories', 'refresh');
+		}
+	}
+
+
+	/*
 	| Tag Submit
 	*/
 	public function submitTag()
@@ -226,7 +243,36 @@ class Posts extends MX_Controller {
 				redirect('posts/tag', 'refresh');
 			}			
 		}
-	}		
+	}
+
+	/*
+	| Tag update view
+	*/
+	public function updateTagView( $id = null )
+	{
+		$data['editTag'] = $this->pmodel->getTagByID($id);
+		// var_dump($data['editTag']);exit();
+		$data['postTag'] = $this->getPostTagHistory();
+		$data['content'] = $this->load->view('add_tag', $data, true);
+		$this->load->view('dashboard/dashboard_layout', $data);
+	}
+
+
+	/*
+	| Tag update
+	*/
+	public function updateTag()
+	{	
+		$feedback = $this->pmodel->updateTag();
+		if( $feedback ){
+			$this->session->set_flashdata('successMsg', 'Tag updated successfully.');
+			redirect('posts/tag', 'refresh');	
+		}
+		else{
+			$this->session->set_flashdata('errorMsg', 'Tag updated failed.');
+			redirect('posts/tag', 'refresh');
+		}
+	}			
 		
 
 	/*

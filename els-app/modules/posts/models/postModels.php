@@ -40,8 +40,31 @@ class PostModels extends CI_Model{
 	public function getCatByID($id)
 	{
 		$query = $this->db->get_where('ep_post_category', array('ID' => $id));
-		return $query->result();
+		//var_dump($query->num_rows());exit();
+		if( $query->num_rows() ){
+			return $query->result();
+		}
+		else{	
+			$this->session->set_flashdata('errorMsg', 'Category Listing failed.');
+			redirect('posts/categories', 'refresh');
+		}
 	}
+
+	/*
+	| Tag by ID
+	*/
+	public function getTagByID($id)
+	{
+		$query = $this->db->get_where('ep_post_tag', array('ID' => $id));
+		//var_dump($query->num_rows());exit();
+		if( $query->num_rows() ){
+			return $query->result();
+		}
+		else{	
+			$this->session->set_flashdata('errorMsg', 'Tag Listing failed.');
+			redirect('posts/tag', 'refresh');
+		}
+	}	
 
 	/*
 	| Tag history
@@ -196,6 +219,45 @@ class PostModels extends CI_Model{
 
 	}
 
+
+
+	/*
+	| Update Category
+	*/
+	public function updateCat()
+	{
+		$catName = $this->input->post('catName', TRUE);
+		$catPermalink = $this->input->post('updateCatPermalink', TRUE);
+		$catID = $this->input->post('catHiddenID', TRUE);
+
+		$catPermalink = strtolower($catPermalink);
+		$catPermalink = str_replace(" ", "-", $catPermalink);
+
+		$this->db->where('ID !=', $catID);
+		$this->db->where('cat_permalink =', $catPermalink);
+		$query = $this->db->get('ep_post_category');
+		$feedback = $query->num_rows();
+
+		if( ! $feedback ){ 
+			$attr = array(
+				'cat_name'		=> $catName,
+				'cat_permalink'	=> $catPermalink,
+			);
+
+			try {
+				$this->db->where('ID', $catID);
+				return $this->db->update('ep_post_category', $attr);
+			} catch (Exception $e) {
+				return false;
+			}
+		}
+		else{
+			// Permalink is already exists
+			$this->session->set_flashdata('errorMsg', 'Category Name or Permalink already exists.');
+			redirect('posts/categories', 'refresh');
+		}
+
+	}
 
 	/*
 	| Delete category

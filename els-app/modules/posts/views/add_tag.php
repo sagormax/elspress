@@ -30,6 +30,40 @@
     <?php endif; ?>
 
 	<div class="row-fluid">
+		<!-- This section is for update Tag -->
+		<?php
+		if( isset($editTag) ):
+		?>	
+
+			<form action="<?php echo base_url('Posts/updateTag/'); ?>" method="POST" name="updateTag" class="form-horizontal">
+				<div class="span12">
+					<div class="widget-box">
+						<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+						  <h5>Update Tag</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<div class="control-group">
+						      <label class="control-label">Name :</label>
+						      <div class="controls">
+						        <input type="text" id="tagName" class="span11" placeholder="Name" name="tagName" />
+						        <input type="hidden" class="span11" name="tagPermalink" />
+						      </div>
+						    </div>
+
+
+							<div class="form-actions">
+						      <button type="submit" class="btn btn-success">Update Tag</button>
+						    </div>
+						</div>
+					</div>
+			    </div>
+		    </form>
+		<!-- End -->
+
+		<?php
+		else:
+		?>
+
 	    <div class="span12">
 			<div class="widget-box">
 				<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -64,7 +98,7 @@
 
 		                              <a href="<?php echo base_url('tag/'.$tag->tag_permalink); ?>" target="_blank"><button class="btn btn-warning btn-mini">View</button></a>
 
-		                              <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-mini">Edit</button></a>
+		                              <a href="<?php echo base_url('posts/updateTagView/'.$tag->ID); ?>"><button class="btn btn-success btn-mini">Edit</button></a>
 
 		                              <a class="deleteAjax" itemName="Tag" id="<?php echo $tag->ID; ?>" href="<?php echo base_url('posts/deleteTag/'.$tag->ID); ?>"><button class="btn btn-danger btn-mini">Delete</button></a>
 
@@ -79,7 +113,7 @@
 			</div>
 	    </div>
 
-		<form action="<?php echo base_url('Posts/submitTag/'); ?>" method="POST" name="submitPost" class="form-horizontal">
+		<form action="<?php echo base_url('Posts/submitTag/'); ?>" method="POST" name="updateTag" class="form-horizontal">
 			<div class="span12">
 				<div class="widget-box">
 					<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -102,6 +136,10 @@
 				</div>
 		    </div>
 	    </form>
+
+	    <?php
+		endif;
+		?>
 
 	</div>
 </div>

@@ -186,6 +186,12 @@ $(document).ready(function(){
 		permalinkChecking(selector);
 	});
 
+	// Category
+	$('#categoryName').focusout(function(){
+		var title = $(this).val().trim().replace(/\s+/g, '-');
+		$('#catPermalink').val(title);
+	});
+
 	function permalinkChecking(selector){
 		var permalinkCkh = $(selector).val().trim().replace(/\s+/g, '-');
 		var url = $(selector).attr('url');
