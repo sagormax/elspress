@@ -88,7 +88,7 @@ $autoload['drivers'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'file', 'html', 'form', 'security');
+$autoload['helper'] = array('url', 'file', 'html', 'form', 'security', 'els_frontend_helper');
 
 
 /*
